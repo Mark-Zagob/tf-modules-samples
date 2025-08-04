@@ -49,9 +49,9 @@ resource "aws_eip" "nat_eip" {
     Name = "${var.env_deploy}-nat-eip-${substr(each.value, length(each.value)-2, 2)}"
   }
   
-  lifecycle {
-    prevent_destroy = true
-  }
+  # lifecycle {
+  #   prevent_destroy = true
+  # }
 }
 
 resource "aws_nat_gateway" "nat" {
