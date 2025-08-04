@@ -78,7 +78,11 @@ resource "aws_route_table_association" "private_services" {
   for_each = aws_subnet.services_subnets
 
   subnet_id = each.value.id
-  route_table_id = aws_route_table.private[each.value.availability_zone].id
+  route_table_id = (
+    local.nat_gw_count == 1 ? 
+      aws_route_table.private[local.natgw_azs[0]].id : 
+      aws_route_table.private[each.value.availability_zone].id
+  )
 }
 
 
