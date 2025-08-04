@@ -26,3 +26,13 @@ variable "tags" {
   type        = map(string)
   description = "Common tags for all resources"
 }
+
+variable "enable_natgw" {
+  type = bool  
+  default = true
+}
+
+variable "natgw_per_az" {
+  type = bool
+  default = false
+}

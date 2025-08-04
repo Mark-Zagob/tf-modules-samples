@@ -20,6 +20,7 @@ module "vpc" {
   avai_zones      = data.aws_availability_zones.available.names
   services_subnets = ["web", "app", "cache"]
   intra_subnets   = ["db", "backup"]
+  enable_natgw    = true
   
   tags = {
     Project     = "Ecommerce"
@@ -53,6 +54,9 @@ output "management_subnet_id" {
 | services_subnets | private subnets with internet| `list(string)` | `[]`    | no |
 | intra_subnets    | private subnets for internal | `list(string)` | `[]`    | no |
 | tags             | Tags for all                 | `map(string)`  | `{}`    | no |
+| enable_natgw     | natgw for services subnets   | `bool       `  | `true`  | no |
+| natgw_per_az     | HA natgw in each az          | `bool`         | `false` | no |
+
 
 ## Outputs
 
